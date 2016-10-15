@@ -10,7 +10,6 @@ Usage:
 
 python3 learning.py
 '''
-
 import sys
 
 def check_version():
