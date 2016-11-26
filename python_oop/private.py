@@ -9,7 +9,7 @@ class Student():
 	def print_score(self):
 		print('%s has score %s'% (self.__name,self.__score))
 	def set_score(self,score):
-		# boolean运算 or and or
+		# boolean运算 or and not
 		if	score>=10 and score<=100:
 			self.__score=score
 		else:
@@ -25,3 +25,6 @@ a.print_score()
 
 a.set_score(19)
 a.print_score()
+
+# 虽然可以通过这种方式访问隐藏的私有变量，not recommended
+print(a._Student__score)
