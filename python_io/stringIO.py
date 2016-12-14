@@ -20,3 +20,12 @@ while True:
 	if s=='':
 		break
 	print(s.strip()+str(i))	
+
+# StringIO操作的只能是str，如果要操作二进制数据，就需要使用BytesIO。
+print('BytesIO started === ===')
+from io import BytesIO
+q= BytesIO()
+word = q.write('中文'.encode('utf-8'))
+print(word)
+
+
