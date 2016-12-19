@@ -17,26 +17,8 @@ pid = os.fork()
 # 常见的Apache服务器就是由父进程监听端口，
 # 每当有新的http请求时，就fork出子进程来处理新的http请求。
 
-# if pid == 0:
-#     print("i'm a child process %s and my parent is %s" % (os.getpid(),os.getppid()))
-# else:
-#     print("i %s just created a child process %s" % (os.getpid(), pid))
+if pid == 0:
+    print("i'm a child process %s and my parent is %s" % (os.getpid(),os.getppid()))
+else:
+    print("i %s just created a child process %s" % (os.getpid(), pid))
 
-
-# multiprocessing
-from multiprocessing import Process
-import os
-
-def run_proc(name):
-    print('run child process %s (%s)...' % (name,os.getpid()))
-# 创建子进程时，只需要传入一个执行函数和函数的参数，
-# 创建一个Process实例，
-# 用start()方法启动，这样创建进程比fork()还要简单。
-# join()方法可以等待子进程结束后再继续往下运行，通常用于进程间的同步
-if __name__=='__main__':
-    print('parent process %s.' % os.getpid())
-    p = Process(target=run_proc,args=('test',))
-    print('child process will start')
-    p.start()
-    p.join()
-    print('child process end.')
