@@ -22,7 +22,7 @@ def check_version():
 if not check_version():
     exit(1)
 
-import os, io, json, subprocess, tempfile
+import os, io, json, sub_process, tempfile
 from urllib import parse
 from wsgiref.simple_server import make_server
 
@@ -92,12 +92,12 @@ def application(environ, start_response):
     try:
         fpath = write_py(name, code)
         print('Execute: %s %s' % (EXEC, fpath))
-        r['output'] = decode(subprocess.check_output([EXEC, fpath], stderr=subprocess.STDOUT, timeout=5))
-    except subprocess.CalledProcessError as e:
+        r['output'] = decode(sub_process.check_output([EXEC, fpath], stderr=sub_process.STDOUT, timeout=5))
+    except sub_process.CalledProcessError as e:
         r = dict(error='Exception', output=decode(e.output))
-    except subprocess.TimeoutExpired as e:
+    except sub_process.TimeoutExpired as e:
         r = dict(error='Timeout', output='执行超时')
-    except subprocess.CalledProcessError as e:
+    except sub_process.CalledProcessError as e:
         r = dict(error='Error', output='执行错误')
     print('Execute done.')
     return [json.dumps(r).encode('utf-8')]
